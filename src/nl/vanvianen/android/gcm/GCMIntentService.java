@@ -333,6 +333,11 @@ public class GCMIntentService extends GCMBaseIntentService {
         launcherIntent.setFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
         launcherIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
+        if(data.get("slug") != null){
+            String slug = (String) data.get("slug");
+            launcherIntent.putExtra("SCREEN_SLUG", slug);
+        }
+
         /* Grab notification content from data according to provided keys if not already set */
         if (title == null && titleKey != null) {
             title = (String) data.get(titleKey);
